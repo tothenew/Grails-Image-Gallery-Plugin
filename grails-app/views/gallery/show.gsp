@@ -13,7 +13,7 @@
 </div>
 <div class="body">
     <h1>
-        <span class="menuButton"><g:link class="list" action="list" controller="photo" id="${gallery?.id}">Photos</g:link></span>
+        %{--<span class="menuButton"><g:link class="list" action="list" controller="photo" id="${gallery?.id}">Photos</g:link></span>--}%
         <span class="menuButton"><g:link class="create" action="addPhoto" id="${gallery?.id}">Add Photos</g:link></span>
     </h1>
     <g:if test="${flash.message}">
