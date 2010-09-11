@@ -4,6 +4,7 @@ import photogallery.Photo
 import photogallery.Gallery
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
+import photogallery.Test
 
 
 class BootStrap {
@@ -36,6 +37,12 @@ class BootStrap {
                 }
             }
         }
+
+        Test test = new Test()
+        Gallery.list().each{
+            test.addToGalleries(it)
+        }
+        test.save()
 
     }
     def destroy = {

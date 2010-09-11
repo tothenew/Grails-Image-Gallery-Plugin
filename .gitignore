@@ -4,7 +4,7 @@ Grails-Image-Gallery-Plugin.ipr
 Grails-Image-Gallery-Plugin.iws
 devDb.properties
 devDb.script
-target
+Grails-Image-Gallery-Plugin/target/
 
 
 
