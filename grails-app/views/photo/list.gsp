@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main"/>
     <g:javascript library="jquery" plugin="jquery"/>
-    <gallery:resources/>
+    <imageGallery:resources/>
     <title>Photo</title>
 </head>
 <body>
@@ -13,7 +13,7 @@
     <span class="menuButton"><g:link class="create" action="create">New</g:link></span>
 </div>
 <g:if test="${gallery?.id}">
-    <gallery:show galleryInstance="${gallery}" options="height:200,preload:0,carousel:false, image_pan_smoothness:5"/>
+    <imageGallery:show galleryInstance="${gallery}" options="height:200,preload:0,carousel:false, image_pan_smoothness:5"/>
 </g:if>
 <g:else>
     <div class="body">
@@ -33,7 +33,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <g:each in="${photoInstanceList}" status="i" var="photo">
+                <g:each in="${photos}" status="i" var="photo">
                     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         <td><g:link action="show" id="${photo.id}">${photo.id}</g:link></td>
                         <td><g:link action="show" id="${photo.id}"><img src="${createLink(action: 'showPhoto', controller: 'photo', id: photo?.id, params: [thumbnail: true])}" width="100" height="100"/></g:link></td>
@@ -46,7 +46,7 @@
             </table>
         </div>
         <div class="paginateButtons">
-            <g:paginate total="${photoInstanceTotal}"/>
+            <g:paginate total="${photoTotal}"/>
         </div>
     </div>
 </g:else>
