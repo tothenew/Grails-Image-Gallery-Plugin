@@ -26,7 +26,7 @@
                     <tbody>
                     <g:each in="${galleryList}" status="i" var="gallery">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                            <td><g:link action="show" id="${gallery.id}">id</g:link></td>
+                            <td><g:link action="show" id="${gallery.id}">${gallery.id}</g:link></td>
                             <td>${gallery.name}</td>
                         </tr>
                     </g:each>

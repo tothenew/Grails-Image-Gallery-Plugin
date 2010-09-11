@@ -115,6 +115,6 @@ class GalleryController {
                 gallery.addToPhotos(photo)
             }
         }
-        redirect(action: 'addPhoto', params: [id: params?.id])
+        redirect(action: 'list')
     }
 }
