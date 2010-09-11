@@ -26,17 +26,7 @@
                 <g:hiddenField name="version" value="${photo?.version}" />
                 <div class="dialog">
                     <table>
-                        <tbody>
-                        
-                            <tr class="prop">
-                                <td valign="top" class="name">
-                                  <label for="thumbnail">Thumbnail</label>
-                                </td>
-                                <td valign="top" class="value ${hasErrors(bean: photo, field: 'thumbnail', 'errors')}">
-                                    <input type="file" id="thumbnail" name="thumbnail" />
-                                </td>
-                            </tr>
-                        
+                        <tbody>                      
                             <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="caption">Caption</label>
