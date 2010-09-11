@@ -9,7 +9,10 @@ class PhotoGalleryGrailsPlugin {
     def pluginExcludes = [
             "grails-app/views/error.gsp",
             "web-app/bootstrapData/sample-photo.jpg",
-            "web-app/bootstrapData"
+            "web-app/bootstrapData",
+            "Bootstrap.groovy",
+            "DataSource.groovy",
+            "UrlMappings.groovy"
     ]
 
     // TODO Fill in these fields

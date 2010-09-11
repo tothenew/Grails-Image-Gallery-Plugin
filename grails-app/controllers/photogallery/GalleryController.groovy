@@ -10,90 +10,90 @@ class GalleryController {
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [galleryInstanceList: Gallery.list(params), galleryInstanceTotal: Gallery.count()]
+        [galleryList: Gallery.list(params), galleryTotal: Gallery.count()]
     }
 
     def create = {
-        def galleryInstance = new Gallery()
-        galleryInstance.properties = params
-        return [galleryInstance: galleryInstance]
+        def gallery = new Gallery()
+        gallery.properties = params
+        return [gallery: gallery]
     }
 
     def save = {
-        def galleryInstance = new Gallery(params)
-        if (galleryInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'gallery.label', default: 'Gallery'), galleryInstance.id])}"
-            redirect(action: "show", id: galleryInstance.id)
+        def gallery = new Gallery(params)
+        if (gallery.save(flush: true)) {
+            flash.message = "Gallery has been created"
+            redirect(action: "show", id: gallery.id)
         }
         else {
-            render(view: "create", model: [galleryInstance: galleryInstance])
+            render(view: "create", model: [gallery: gallery])
         }
     }
 
     def show = {
-        def galleryInstance = Gallery.get(params.id)
-        if (!galleryInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'gallery.label', default: 'Gallery'), params.id])}"
+        def gallery = Gallery.get(params.id)
+        if (!gallery) {
+            flash.message = "Gallery not found"
             redirect(action: "list")
         }
         else {
-            [galleryInstance: galleryInstance]
+            [gallery: gallery]
         }
     }
 
     def edit = {
-        def galleryInstance = Gallery.get(params.id)
-        if (!galleryInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'gallery.label', default: 'Gallery'), params.id])}"
+        def gallery = Gallery.get(params.id)
+        if (!gallery) {
+            flash.message = "Gallery not found"
             redirect(action: "list")
         }
         else {
-            return [galleryInstance: galleryInstance]
+            return [gallery: gallery]
         }
     }
 
     def update = {
-        def galleryInstance = Gallery.get(params.id)
-        if (galleryInstance) {
+        def gallery = Gallery.get(params.id)
+        if (gallery) {
             if (params.version) {
                 def version = params.version.toLong()
-                if (galleryInstance.version > version) {
+                if (gallery.version > version) {
 
-                    galleryInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'gallery.label', default: 'Gallery')] as Object[], "Another user has updated this Gallery while you were editing")
-                    render(view: "edit", model: [galleryInstance: galleryInstance])
+                    gallery.errors.rejectValue("version", "Another user has updated this Gallery while you were editing","")
+                    render(view: "edit", model: [gallery: gallery])
                     return
                 }
             }
-            galleryInstance.properties = params
-            if (!galleryInstance.hasErrors() && galleryInstance.save(flush: true)) {
-                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'gallery.label', default: 'Gallery'), galleryInstance.id])}"
-                redirect(action: "show", id: galleryInstance.id)
+            gallery.properties = params
+            if (!gallery.hasErrors() && gallery.save(flush: true)) {
+                flash.message = "Gallery has been updated"
+                redirect(action: "show", id: gallery.id)
             }
             else {
-                render(view: "edit", model: [galleryInstance: galleryInstance])
+                render(view: "edit", model: [gallery: gallery])
             }
         }
         else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'gallery.label', default: 'Gallery'), params.id])}"
+            flash.message = "Gallery not found"
             redirect(action: "list")
         }
     }
 
     def delete = {
-        def galleryInstance = Gallery.get(params.id)
-        if (galleryInstance) {
+        def gallery = Gallery.get(params.id)
+        if (gallery) {
             try {
-                galleryInstance.delete(flush: true)
-                flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'gallery.label', default: 'Gallery'), params.id])}"
+                gallery.delete(flush: true)
+                flash.message = "Gallery has been deleted"
                 redirect(action: "list")
             }
             catch (org.springframework.dao.DataIntegrityViolationException e) {
-                flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'gallery.label', default: 'Gallery'), params.id])}"
+                flash.message = "Gallery can not be deleted"
                 redirect(action: "show", id: params.id)
             }
         }
         else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'gallery.label', default: 'Gallery'), params.id])}"
+            flash.message = "Gallery not found"
             redirect(action: "list")
         }
     }
@@ -115,6 +115,6 @@ class GalleryController {
                 gallery.addToPhotos(photo)
             }
         }
-        redirect(action: 'addPhoto', params: [id: params?.id])
+        redirect(action: 'list')
     }
 }

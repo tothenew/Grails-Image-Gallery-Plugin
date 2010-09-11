@@ -6,7 +6,7 @@
 </head>
 <body>Place your content here
 <div style="width:300px">
-    <gallery:show galleryInstance="${Gallery.get(1)}" />
+    <gallery:show galleryInstance="${Gallery.get(1)}" theme="classic" showInLightBox="true"/>
 </div>
 </body>
 </html>

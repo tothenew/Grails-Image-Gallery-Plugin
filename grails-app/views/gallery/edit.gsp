@@ -1,42 +1,39 @@
-
-
 <%@ page import="photogallery.Gallery" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'gallery.label', default: 'Gallery')}" />
-        <title><g:message code="default.edit.label" args="[entityName]" /></title>
+        <title>Edit Photo Gallery</title>
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></span>
-            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
+            <span class="menuButton"><g:link class="list" action="list">List</g:link></span>
+            <span class="menuButton"><g:link class="create" action="create">New</g:link></span>
         </div>
         <div class="body">
-            <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
+            <h1>Edit Photo Gallery</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
-            <g:hasErrors bean="${galleryInstance}">
+            <g:hasErrors bean="${gallery}">
             <div class="errors">
-                <g:renderErrors bean="${galleryInstance}" as="list" />
+                <g:renderErrors bean="${gallery}" as="list" />
             </div>
             </g:hasErrors>
             <g:form method="post" >
-                <g:hiddenField name="id" value="${galleryInstance?.id}" />
-                <g:hiddenField name="version" value="${galleryInstance?.version}" />
+                <g:hiddenField name="id" value="${gallery?.id}" />
+                <g:hiddenField name="version" value="${gallery?.version}" />
                 <div class="dialog">
                     <table>
                         <tbody>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="name"><g:message code="gallery.name.label" default="Name" /></label>
+                                  <label for="name">Name</label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: galleryInstance, field: 'name', 'errors')}">
-                                    <g:textField name="name" value="${galleryInstance?.name}" />
+                                <td valign="top" class="value ${hasErrors(bean: gallery, field: 'name', 'errors')}">
+                                    <g:textField name="name" value="${gallery?.name}" />
                                 </td>
                             </tr>
                         
@@ -44,8 +41,8 @@
                     </table>
                 </div>
                 <div class="buttons">
-                    <span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
-                    <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
+                    <span class="button"><g:actionSubmit class="save" action="update" value="Update" /></span>
+                    <span class="button"><g:actionSubmit class="delete" action="delete" value="Delete" onclick="return confirm('Are you sure?');" /></span>
                 </div>
             </g:form>
         </div>
