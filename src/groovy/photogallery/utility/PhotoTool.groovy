@@ -5,6 +5,7 @@ import com.sun.media.jai.codec.FileSeekableStream
 import javax.media.jai.InterpolationNearest
 import java.awt.image.renderable.ParameterBlock
 import javax.media.jai.RenderedOp
+import com.sun.media.jai.codec.ByteArraySeekableStream
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,11 +16,8 @@ import javax.media.jai.RenderedOp
  */
 class PhotoTool {
 
-  private RenderedOp original = null;
   private RenderedOp image = null;
   private RenderedOp result = null;
-  private RenderedOp alpha = null;
-  private RenderedOp mask = null;
 
   /* Removes the accelaration lib exception */
   static { System.setProperty("com.sun.media.jai.disableMediaLib", "true"); }
@@ -75,6 +73,17 @@ class PhotoTool {
     FileSeekableStream fss = new FileSeekableStream(file);
     image = JAI.create("stream", fss);
   }
+
+  /**
+   * Loads an image from a byte array.
+   *
+   * @param bytes array to be used for image initialization
+   */
+  public void load(byte[] bytes) {
+      ByteArraySeekableStream byteStream = new ByteArraySeekableStream(bytes);
+      image = JAI.create("stream", byteStream);
+  }
+  
 
   /**
    * Returns the resulting image as a byte array.
