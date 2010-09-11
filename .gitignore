@@ -1,9 +1,10 @@
-PhotoGallary-grailsPlugins.iml
-PhotoGallary.iml
-PhotoGallary.ipr
-PhotoGallary.iws
-
-
+Grails-Image-Gallery-Plugin-grailsPlugins.iml
+Grails-Image-Gallery-Plugin.iml
+Grails-Image-Gallery-Plugin.ipr
+Grails-Image-Gallery-Plugin.iws
+devDb.properties
+devDb.script
+target
 
 
 
