@@ -23,7 +23,7 @@
             <tr class="prop">
                 <td valign="top" class="name">Id</td>
 
-                <td valign="top" class="value">${fieldValue(bean: photo, field: "id")}</td>
+                <td valign="top" class="value">${photo.id}</td>
 
             </tr>
 
@@ -37,7 +37,7 @@
             <tr class="prop">
                 <td valign="top" class="name">Caption</td>
 
-                <td valign="top" class="value">${fieldValue(bean: photo, field: "caption")}</td>
+                <td valign="top" class="value">${photo.caption}</td>
 
             </tr>
 
@@ -51,14 +51,14 @@
             <tr class="prop">
                 <td valign="top" class="name">Width</td>
 
-                <td valign="top" class="value">${fieldValue(bean: photo, field: "width")}</td>
+                <td valign="top" class="value">${photo.width}</td>
 
             </tr>
 
             <tr class="prop">
                 <td valign="top" class="name">Height</td>
 
-                <td valign="top" class="value">${fieldValue(bean: photo, field: "height")}</td>
+                <td valign="top" class="value">${photo.height}</td>
 
             </tr>
 
