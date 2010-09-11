@@ -31,7 +31,6 @@ class PhotoController {
 
   def save = {PhotoCO photoCO ->
     def photoInstance = photoCO?.photo
-    photoInstance.loadThumbnail(photoInstance)
     if (!photoInstance?.hasErrors() && photoInstance.save()) {
       flash.message = "${message(code: 'default.created.message', args: [message(code: 'photo.label', default: 'Photo'), photoInstance.id])}"
       redirect(action: "show", id: photoInstance.id)
@@ -74,8 +73,7 @@ class PhotoController {
           return
         }
       }
-      photoInstance.properties = params
-      Photo.loadThumbnail(photoInstance)
+      photoInstance.properties = params      
       if (!photoInstance.hasErrors() && photoInstance.save(flush: true)) {
         flash.message = "${message(code: 'default.updated.message', args: [message(code: 'photo.label', default: 'Photo'), photoInstance.id])}"
         redirect(action: "show", id: photoInstance.id)
@@ -109,6 +107,7 @@ class PhotoController {
       redirect(action: "list")
     }
   }
+
   def showPhoto = {
     Photo photo = Photo?.get(params?.id)
     response.setContentType('image/jpg')

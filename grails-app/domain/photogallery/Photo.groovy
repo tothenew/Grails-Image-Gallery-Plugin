@@ -1,6 +1,6 @@
 package photogallery
 
-import org.grails.plugins.imagetools.ImageTool
+import photogallery.utility.PhotoTool
 
 class Photo {
   byte[] thumbnail
@@ -8,6 +8,7 @@ class Photo {
   byte[] image
   Integer width
   Integer height
+
   static mapping = {
   }
   static constraints = {
@@ -20,12 +21,19 @@ class Photo {
     height(nullable: false)
   }
 
-  public static void loadThumbnail(Photo photo) {
-    if (photo) {
-      def imageTool = new ImageTool()
-      imageTool.load(photo.image)
-      imageTool.thumbnail(100)   
-      photo.thumbnail = imageTool.getBytes("JPEG")
+  def beforeInsert = {
+    loadThumbnail()
+  }
+  def beforeUpdate = {
+    loadThumbnail()
+  }
+
+  public void loadThumbnail() {
+    if (this.image) {
+      def photoTool = new PhotoTool()
+      photoTool.load(image)
+      photoTool.thumbnail(100)
+      this.thumbnail = photoTool.getBytes("JPEG")
     }
   }
 }

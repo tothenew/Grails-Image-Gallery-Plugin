@@ -21,8 +21,7 @@ class BootStrap {
             photo?.caption = "caption$it"
             Image img = new ImageIcon(file?.bytes).getImage();
             photo?.height = img.getHeight(null);
-            photo?.width = img.getWidth(null);
-            photo.loadThumbnail(photo);
+            photo?.width = img.getWidth(null);            
             photo?.save()
         }
         (1..5).each {
