@@ -22,7 +22,7 @@ class PhotoController {
             photos = Photo.list(params)
             count = Photo.count()
         }
-        [photoInstanceList: photos, photoInstanceTotal: count, gallery: gallery]
+        [photos: photos, photoTotal: count, gallery: gallery]
     }
     def create = {
         def photo = new Photo()
