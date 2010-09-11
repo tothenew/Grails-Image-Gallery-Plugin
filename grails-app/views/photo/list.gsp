@@ -33,7 +33,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <g:each in="${photos}" status="i" var="photo">
+                <g:each in="${photoInstanceList}" status="i" var="photo">
                     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         <td><g:link action="show" id="${photo.id}">${photo.id}</g:link></td>
                         <td><g:link action="show" id="${photo.id}"><img src="${createLink(action: 'showPhoto', controller: 'photo', id: photo?.id, params: [thumbnail: true])}" width="100" height="100"/></g:link></td>
@@ -46,7 +46,7 @@
             </table>
         </div>
         <div class="paginateButtons">
-            <g:paginate total="${photoTotal}"/>
+            <g:paginate total="${photoInstanceTotal}"/>
         </div>
     </div>
 </g:else>
