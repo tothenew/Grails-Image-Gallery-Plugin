@@ -11,7 +11,8 @@ class PhotoGalleryGrailsPlugin {
             "web-app/bootstrapData/sample-photo.jpg",
             "web-app/bootstrapData",
             "Bootstrap.groovy",
-            "DataSource.groovy"
+            "DataSource.groovy",
+            "UrlMappings.groovy"
     ]
 
     // TODO Fill in these fields
