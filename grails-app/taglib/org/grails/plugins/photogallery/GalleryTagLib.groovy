@@ -8,7 +8,7 @@ class GalleryTagLib {
 
     def show = {attrs ->
         Gallery gallery =(attrs['galleryInstance'])
-        out << g.render(template:'/showGalleria',model:[theme:attrs['theme']?:'classic',gallery:gallery,pluginContextPath:pluginContextPath]) 
+        out << g.render(template:'/showGalleria',model:[theme:attrs['theme']?:'classic',gallery:gallery,pluginContextPath:pluginContextPath,options:attrs['options']?:'']) 
     }
 
 

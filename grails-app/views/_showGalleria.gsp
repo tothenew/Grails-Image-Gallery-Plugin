@@ -9,6 +9,6 @@
     // Load the theme
     Galleria.loadTheme('${g.resource(dir: pluginContextPath + '/galleria/themes/'+theme, file: 'galleria.' + theme +'.js')}');
     // Initialize Galleria
-    jQuery('#gallery_${gallery.id}').galleria();
+    jQuery('#gallery_${gallery.id}').galleria({${options?:''}});
 
 </script>
