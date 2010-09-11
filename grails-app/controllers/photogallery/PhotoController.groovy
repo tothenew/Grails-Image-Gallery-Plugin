@@ -20,90 +20,90 @@ class PhotoController {
       photos = Photo.list(params)
       count = Photo.count()
     }
-    [photoInstanceList: photos, photoInstanceTotal: count]
+    [photos: photos, photoTotal: count]
   }
 
   def create = {
-    def photoInstance = new Photo()
-    photoInstance.properties = params
-    return [photoInstance: photoInstance]
+    def photo = new Photo()
+    photo.properties = params
+    return [photo: photo]
   }
 
   def save = {PhotoCO photoCO ->
-    def photoInstance = photoCO?.photo
-    if (!photoInstance?.hasErrors() && photoInstance.save()) {
-      flash.message = "${message(code: 'default.created.message', args: [message(code: 'photo.label', default: 'Photo'), photoInstance.id])}"
-      redirect(action: "show", id: photoInstance.id)
+    def photo = photoCO?.photo
+    if (!photo?.hasErrors() && photo.save()) {
+      flash.message = "Photo has been uploaded"
+      redirect(action: "show", id: photo.id)
     } else {
-      render(view: "create", model: [photoInstance: photoInstance])
+      render(view: "create", model: [photo: photo])
     }
   }
 
   def show = {
-    def photoInstance = Photo.get(params.id)
-    if (!photoInstance) {
-      flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])}"
+    def photo = Photo.get(params.id)
+    if (!photo) {
+      flash.message = "Photo not found"
       redirect(action: "list")
     }
     else {
-      [photoInstance: photoInstance]
+      [photo: photo]
     }
   }
 
   def edit = {
-    def photoInstance = Photo.get(params.id)
-    if (!photoInstance) {
-      flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])}"
+    def photo = Photo.get(params.id)
+    if (!photo) {
+      flash.message = "Photo not found"
       redirect(action: "list")
     }
     else {
-      return [photoInstance: photoInstance]
+      return [photo: photo]
     }
   }
 
   def update = {
-    def photoInstance = Photo.get(params.id)
-    if (photoInstance) {
+    def photo = Photo.get(params.id)
+    if (photo) {
       if (params.version) {
         def version = params.version.toLong()
-        if (photoInstance.version > version) {
+        if (photo.version > version) {
 
-          photoInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'photo.label', default: 'Photo')] as Object[], "Another user has updated this Photo while you were editing")
-          render(view: "edit", model: [photoInstance: photoInstance])
+          photo.errors.rejectValue("version", "Another user has updated this Photo while you were editing","")
+          render(view: "edit", model: [photo: photo])
           return
         }
       }
-      photoInstance.properties = params      
-      if (!photoInstance.hasErrors() && photoInstance.save(flush: true)) {
-        flash.message = "${message(code: 'default.updated.message', args: [message(code: 'photo.label', default: 'Photo'), photoInstance.id])}"
-        redirect(action: "show", id: photoInstance.id)
+      photo.properties = params
+      if (!photo.hasErrors() && photo.save(flush: true)) {
+        flash.message = "Photo has been updated"
+        redirect(action: "show", id: photo.id)
       }
       else {
-        render(view: "edit", model: [photoInstance: photoInstance])
+        render(view: "edit", model: [photo: photo])
       }
     }
     else {
-      flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])}"
+      flash.message = "Photo not found"
       redirect(action: "list")
     }
   }
 
 
   def delete = {
-    def photoInstance = Photo.get(params.id)
-    if (photoInstance) {
+    def photo = Photo.get(params.id)
+    if (photo) {
       try {
-        photoInstance.delete(flush: true)
-        flash.message = "${message(code: 'default.deleted.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])}"
+        photo.delete(flush: true)
+        flash.message = "Photo has been deleted"
         redirect(action: "list")
       }
       catch (org.springframework.dao.DataIntegrityViolationException e) {
-        flash.message = "${message(code: 'default.not.deleted.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])}"
+        flash.message = "Photo could not be deleted"
         redirect(action: "show", id: params.id)
       }
     }
     else {
-      flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'photo.label', default: 'Photo'), params.id])}"
+      flash.message = "Photo could not be found"
       redirect(action: "list")
     }
   }

@@ -1,19 +1,17 @@
-
 <%@ page import="photogallery.Gallery" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'gallery.label', default: 'Gallery')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <title>List Photo Galleries</title>
     </head>
     <body>
         <div class="nav">
-            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-            <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></span>
+            <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
+            <span class="menuButton"><g:link class="create" action="create">Create Photo Gallery</g:link></span>
         </div>
         <div class="body">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <h1>List Photo Galleries</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -21,28 +19,22 @@
                 <table>
                     <thead>
                         <tr>
-                        
-                            <g:sortableColumn property="id" title="${message(code: 'gallery.id.label', default: 'Id')}" />
-                        
-                            <g:sortableColumn property="name" title="${message(code: 'gallery.name.label', default: 'Name')}" />
-                        
+                            <g:sortableColumn property="id" title="Id" />
+                            <g:sortableColumn property="name" title="Name" />
                         </tr>
                     </thead>
                     <tbody>
-                    <g:each in="${galleryInstanceList}" status="i" var="galleryInstance">
+                    <g:each in="${galleryList}" status="i" var="gallery">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                        
-                            <td><g:link action="show" id="${galleryInstance.id}">${fieldValue(bean: galleryInstance, field: "id")}</g:link></td>
-                        
-                            <td>${fieldValue(bean: galleryInstance, field: "name")}</td>
-                        
+                            <td><g:link action="show" id="${gallery.id}">id</g:link></td>
+                            <td>${gallery.name}</td>
                         </tr>
                     </g:each>
                     </tbody>
                 </table>
             </div>
             <div class="paginateButtons">
-                <g:paginate total="${galleryInstanceTotal}" />
+                <g:paginate total="${galleryTotal}" />
             </div>
         </div>
     </body>
