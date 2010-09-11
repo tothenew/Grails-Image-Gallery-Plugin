@@ -7,8 +7,10 @@ class GalleryTagLib {
     static namespace = "gallery"
 
     def show = {attrs ->
-        Gallery gallery =(attrs['galleryInstance'])
-        out << g.render(template:'/showGalleria',model:[theme:attrs['theme']?:'classic',gallery:gallery,pluginContextPath:pluginContextPath,options:attrs['options']?:'']) 
+        Gallery gallery = (attrs['galleryInstance'])
+        Boolean showInLightBox = attrs['showInLightBox'] ? true : false
+        def options = attrs['options'] ?: 'autoplay: true'
+        out << g.render(template: '/showGalleria', model: [theme: attrs['theme'] ?: 'classic', gallery: gallery, pluginContextPath: pluginContextPath, options: options ?: '', showInLightBox: showInLightBox])
     }
 
 

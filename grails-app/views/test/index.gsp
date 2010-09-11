@@ -5,6 +5,8 @@
     <gallery:resources/>
 </head>
 <body>Place your content here
-<gallery:show galleryInstance="${Gallery.get(1)}" theme="classic" options="height:400,width:400"/>
+<div style="width:300px">
+    <gallery:show galleryInstance="${Gallery.get(1)}" />
+</div>
 </body>
 </html>

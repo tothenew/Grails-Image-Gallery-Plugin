@@ -967,7 +967,7 @@ var G = window.Galleria = Base.extend({
             thumb_margin: 0,
             thumb_quality: 'auto',
             thumbnails: true,
-            transition: G.transitions.fade,
+            transition: G.transitions.flash,
             transition_speed: 400
         }, this.options);
         
