@@ -6,6 +6,7 @@ devDb.properties
 devDb.script
 Grails-Image-Gallery-Plugin/target/
 target
-
+grails-photo-gallery-0.1.zip
+plugin.xml
 
 

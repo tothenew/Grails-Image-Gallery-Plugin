@@ -10,7 +10,8 @@ class PhotoGalleryGrailsPlugin {
             "grails-app/views/error.gsp",
             "web-app/bootstrapData/sample-photo.jpg",
             "web-app/bootstrapData",
-            "Bootstrap.groovy"
+            "Bootstrap.groovy",
+            "DataSource.groovy"
     ]
 
     // TODO Fill in these fields
