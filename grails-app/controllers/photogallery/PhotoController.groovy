@@ -90,6 +90,7 @@ class PhotoController {
     }
   }
 
+
   def delete = {
     def photoInstance = Photo.get(params.id)
     if (photoInstance) {
@@ -108,16 +109,9 @@ class PhotoController {
       redirect(action: "list")
     }
   }
-
   def showPhoto = {
     Photo photo = Photo?.get(params?.id)
-    response.setContentType('image')
-    response.outputStream << photo?.image
+    response.setContentType('image/jpg')
+    response.outputStream << (params?.thumbnail ? photo?.thumbnail : photo?.image)
   }
-
-  def showThumbNail = {
-    Photo photo = Photo?.get(params?.id)
-    response.setContentType('image')
-    response.outputStream << photo?.thumbnail
-  }  
 }

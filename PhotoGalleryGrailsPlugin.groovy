@@ -7,7 +7,9 @@ class PhotoGalleryGrailsPlugin {
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-            "grails-app/views/error.gsp"
+            "grails-app/views/error.gsp",
+            "web-app/bootstrapData/sample-photo.jpg",
+            "web-app/bootstrapData"
     ]
 
     // TODO Fill in these fields
