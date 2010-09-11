@@ -1,4 +1,4 @@
-package photogallary
+package photogallery
 
 class Photo {
     byte[] thumbnail
@@ -7,8 +7,6 @@ class Photo {
     Integer width
     Integer height
     static mapping = {
-        image column: "image", sqlType: "longblob"
-
     }
     static constraints = {
         thumbnail(nullable: true)

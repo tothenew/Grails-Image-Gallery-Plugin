@@ -1,4 +1,4 @@
-package photogallary
+package photogallery
 
 class PhotoController {
 
@@ -13,8 +13,8 @@ class PhotoController {
         Integer count
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         if (params?.id) {
-            Gallary gallary = Gallary.get(params?.id)
-            photos = gallary.photos as List
+            Gallery gallery = Gallery.get(params?.id)
+            photos = gallery.photos as List
             count = photos?.size()
         } else {
             photos = Photo.list(params)

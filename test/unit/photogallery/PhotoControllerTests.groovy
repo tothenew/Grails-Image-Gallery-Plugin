@@ -1,4 +1,4 @@
-package photogallary
+package photogallery
 
 import grails.test.*
 

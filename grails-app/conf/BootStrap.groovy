@@ -1,13 +1,13 @@
 import java.awt.Image
 import javax.swing.ImageIcon
-import photogallary.Photo
-import photogallary.Gallary
+import photogallery.Photo
+import photogallery.Gallery
 
 class BootStrap {
 
     def init = { servletContext ->
         (1..20).each {
-            File file = new File("/home/uday/Pictures/IG/30082010194.jpg")
+            File file = new File("/home/chandan/Desktop/pic.jpg")
             Photo photo = new Photo()
             photo?.image = file?.bytes
             photo?.caption = "caption$it"
@@ -17,15 +17,15 @@ class BootStrap {
             photo?.save()
         }
         (1..5).each {
-            Gallary gallary = new Gallary(name: "Gallary$it")
-            gallary.save()
+            Gallery gallery = new Gallery(name: "Gallery$it")
+            gallery.save()
         }
 
-        Gallary.list().each {Gallary gallary ->
-            while (gallary.photos?.size() != 5) {
+        Gallery.list().each {Gallery gallery ->
+            while (gallery.photos?.size() != 5) {
                 Integer randomInt = (new Random()).nextInt(21)
                 if (Photo.exists(randomInt)) {
-                    gallary.addToPhotos(Photo.get(randomInt))
+                    gallery.addToPhotos(Photo.get(randomInt))
                 }
             }
         }

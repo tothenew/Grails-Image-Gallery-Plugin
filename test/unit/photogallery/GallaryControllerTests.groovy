@@ -1,8 +1,8 @@
-package photogallary
+package photogallery
 
 import grails.test.*
 
-class PhotoTests extends GrailsUnitTestCase {
+class GalleryControllerTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
     }
