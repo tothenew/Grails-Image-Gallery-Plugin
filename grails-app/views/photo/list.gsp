@@ -37,7 +37,7 @@
 
                     <td><g:link action="show" id="${photoInstance.id}">${fieldValue(bean: photoInstance, field: "id")}</g:link></td>
 
-                    <td><g:link action="show" id="${photoInstance.id}"><img src="${createLink(action:'showPhoto',controller:'photo',id:photoInstance?.id)}" width="100" height="100" /></g:link></td>
+                    <td><g:link action="show" id="${photoInstance.id}"><img src="${createLink(action: 'showPhoto', controller: 'photo', id: photoInstance?.id, params: [thumbnail: true])}" width="100" height="100"/></g:link></td>
 
                     <td><g:link action="show" id="${photoInstance.id}">${fieldValue(bean: photoInstance, field: "caption")}</g:link></td>
 

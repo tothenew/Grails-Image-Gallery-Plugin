@@ -3,6 +3,7 @@ package photogallery
 class Photo {
     byte[] thumbnail
     String caption
+    String description
     byte[] image
     Integer width
     Integer height
@@ -14,6 +15,7 @@ class Photo {
         image(validator: {
             return it?.size() > 0
         })
+        description(nullable:true)
         width(nullable: false)
         height(nullable: false)
     }

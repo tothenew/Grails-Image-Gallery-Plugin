@@ -109,7 +109,7 @@ class PhotoController {
 
     def showPhoto = {
         Photo photo = Photo?.get(params?.id)
-        response.setContentType('image')
-        response.outputStream << photo?.image
+        response.setContentType('image/jpg')
+        response.outputStream << (params?.thumbnail ? photo?.thumbnail : photo?.image)
     }
 }

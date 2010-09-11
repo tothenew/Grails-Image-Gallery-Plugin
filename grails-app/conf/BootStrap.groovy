@@ -9,13 +9,14 @@ import org.codehaus.groovy.grails.web.context.ServletContextHolder as SCH
 class BootStrap {
 
     def init = { servletContext ->
-		ConfigurationHolder.config.rover.filePaths.restaurantImages
-		String path = SCH.servletContext.getRealPath("/bootstrapData/sample-photo.jpg")
+        ConfigurationHolder.config.rover.filePaths.restaurantImages
+        String path = SCH.servletContext.getRealPath("/bootstrapData/sample-photo.jpg")
 
         (1..20).each {
             File file = new File(path)
             Photo photo = new Photo()
             photo?.image = file?.bytes
+            photo?.thumbnail = new File(path).readBytes() 
             photo?.caption = "caption$it"
             Image img = new ImageIcon(file?.bytes).getImage();
             photo?.height = img.getHeight(null);

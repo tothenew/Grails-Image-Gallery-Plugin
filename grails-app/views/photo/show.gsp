@@ -31,7 +31,7 @@
             <tr class="prop">
                 <td valign="top" class="name"><g:message code="photo.thumbnail.label" default="Thumbnail"/></td>
 
-                <td valign="top" class="value">${fieldValue(bean: photoInstance, field: "thumbnail")}</td>
+                <td valign="top" class="value"><img src="${createLink(action:'showPhoto',controller:'photo',id:photoInstance?.id,params:[thumbnail:true])}" width="100" height="100" /></td>
 
             </tr>
 
