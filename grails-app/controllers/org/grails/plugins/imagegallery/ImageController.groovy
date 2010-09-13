@@ -10,77 +10,77 @@ class ImageController {
 
 
     def list = {
-        List<Image> photos = []
+        List<Image> images = []
         Integer count
         Gallery gallery = new Gallery()
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         if (params?.id) {
             gallery = Gallery.get(params?.id)
-            photos = gallery.photos as List
-            count = photos?.size()
+            images = gallery.images as List
+            count = images?.size()
         } else {
-            photos = Image.list(params)
+            images = Image.list(params)
             count = Image.count()
         }
-        [photos: photos, photoTotal: count, gallery: gallery]
+        [images: images, imageTotal: count, gallery: gallery]
     }
     def create = {
-        def photo = new Image()
-        photo.properties = params
-        return [photo: photo]
+        def image = new Image()
+        image.properties = params
+        return [image: image]
     }
 
-    def save = {ImageCO photoCO ->
-        def photo = photoCO?.photo
-        if (!photo?.hasErrors() && photo.save()) {
+    def save = {ImageCO imageCO ->
+        def image = imageCO?.image
+        if (!image?.hasErrors() && image.save()) {
             flash.message = "Image has been uploaded"
-            redirect(action: "show", id: photo.id)
+            redirect(action: "show", id: image.id)
         } else {
-            render(view: "create", model: [photo: photo])
+            render(view: "create", model: [image: image])
         }
     }
 
     def show = {
-        def photo = Image.get(params.id)
-        if (!photo) {
+        def image = Image.get(params.id)
+        if (!image) {
             flash.message = "Image not found"
             redirect(action: "list")
         }
         else {
-            [photo: photo]
+            [image: image]
         }
     }
 
     def edit = {
-        def photo = Image.get(params.id)
-        if (!photo) {
+        def image = Image.get(params.id)
+        if (!image) {
             flash.message = "Image not found"
             redirect(action: "list")
         }
         else {
-            return [photo: photo]
+            return [image: image]
         }
     }
 
     def update = {
-        def photo = Image.get(params.id)
-        if (photo) {
+        def image = Image.get(params.id)
+        if (image) {
             if (params.version) {
                 def version = params.version.toLong()
-                if (photo.version > version) {
+                if (image.version > version) {
 
-                    photo.errors.rejectValue("version", "Another user has updated this Image while you were editing", "")
-                    render(view: "edit", model: [photo: photo])
+                    image.errors.rejectValue("version", "Another user has updated this Image while you were editing", "")
+                    render(view: "edit", model: [image: image])
                     return
                 }
             }
-            photo.properties = params
-            if (!photo.hasErrors() && photo.save(flush: true)) {
+            image.properties = params
+            if (!image.hasErrors() && image.save(flush: true)) {
                 flash.message = "Image has been updated"
-                redirect(action: "show", id: photo.id)
+                redirect(action: "show", id: image.id)
             }
             else {
-                render(view: "edit", model: [photo: photo])
+                render(view: "edit", model: [image: image])
             }
         }
         else {
@@ -91,10 +91,10 @@ class ImageController {
 
 
     def delete = {
-        def photo = Image.get(params.id)
-        if (photo) {
+        def image = Image.get(params.id)
+        if (image) {
             try {
-                photo.delete(flush: true)
+                image.delete(flush: true)
                 flash.message = "Image has been deleted"
                 redirect(action: "list")
             }
@@ -109,9 +109,9 @@ class ImageController {
         }
     }
 
-    def showPhoto = {
-        Image photo = Image?.get(params?.id)
+    def showImage = {
+        Image image = Image?.get(params?.id)
         response.setContentType('image/jpg')
-        response.outputStream << (params?.thumbnail ? photo?.thumbnail : photo?.image)
+        response.outputStream << (params?.thumbnail ? image?.thumbnail : image?.data)
     }
 }

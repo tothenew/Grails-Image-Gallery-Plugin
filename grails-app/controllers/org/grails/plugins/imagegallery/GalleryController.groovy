@@ -98,21 +98,21 @@ class GalleryController {
         }
     }
 
-    def addPhoto = {
+    def addImage = {
         Gallery gallery = Gallery.get(params?.id)
-        List<Image> photos = Image.list()
-        List<Image> galleryPhotos = gallery.photos as List
-        [gallery: gallery, photos: photos, galleryPhotos: galleryPhotos]
+        List<Image> images = Image.list()
+        List<Image> galleryImages = gallery.images as List
+        [gallery: gallery, images: images, galleryimages: galleryImages]
     }
 
-    def savePhoto = {
+    def saveImage = {
         Gallery gallery = Gallery.get(params?.id)
-        Image photo
-        gallery.photos = []
-        if (params.photo) {
-            [params.photo].flatten().each {
-                photo = Image.get(it)
-                gallery.addToPhotos(photo)
+        Image image
+        gallery.images = []
+        if (params.image) {
+            [params.image].flatten().each {
+                image = Image.get(it)
+                gallery.addToImages(image)
             }
         }
         redirect(action: 'list')

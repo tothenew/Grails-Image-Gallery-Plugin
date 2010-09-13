@@ -1,11 +1,10 @@
-<%@ page import="photogallery.Photo" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main"/>
     <g:javascript library="jquery" plugin="jquery"/>
-    <imageGallery:resources/>
-    <title>Photo</title>
+    <ig:resources/>
+    <title>image</title>
 </head>
 <body>
 <div class="nav">
@@ -13,11 +12,11 @@
     <span class="menuButton"><g:link class="create" action="create">New</g:link></span>
 </div>
 <g:if test="${gallery?.id}">
-    <imageGallery:show galleryInstance="${gallery}" options="height:200,preload:0,carousel:false, image_pan_smoothness:5"/>
+    <ig:show galleryInstance="${gallery}" theme="fullscreen" options="height:200,preload:0,carousel:true, image_pan_smoothness:5" showInLightBox="true"/>
 </g:if>
 <g:else>
     <div class="body">
-        <h1>List Photo</h1>
+        <h1>List image</h1>
         <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
         </g:if>
@@ -33,20 +32,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                <g:each in="${photos}" status="i" var="photo">
+                <g:each in="${images}" status="i" var="image">
                     <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                        <td><g:link action="show" id="${photo.id}">${photo.id}</g:link></td>
-                        <td><g:link action="show" id="${photo.id}"><img src="${createLink(action: 'showPhoto', controller: 'photo', id: photo?.id, params: [thumbnail: true])}" width="100" height="100"/></g:link></td>
-                        <td><g:link action="show" id="${photo.id}">${photo.caption}</g:link></td>
-                        <td><g:link action="show" id="${photo.id}">${photo.width}</g:link></td>
-                        <td><g:link action="show" id="${photo.id}">${photo.height}</g:link></td>
+                        <td><g:link action="show" id="${image.id}">${image.id}</g:link></td>
+                        <td><g:link action="show" id="${image.id}"><img src="${createLink(action: 'showImage', controller: 'image', id: image?.id, params: [thumbnail: true])}" width="100" height="100"/></g:link></td>
+                        <td><g:link action="show" id="${image.id}">${image.caption}</g:link></td>
+                        <td><g:link action="show" id="${image.id}">${image.width}</g:link></td>
+                        <td><g:link action="show" id="${image.id}">${image.height}</g:link></td>
                     </tr>
                 </g:each>
                 </tbody>
             </table>
         </div>
         <div class="paginateButtons">
-            <g:paginate total="${photoTotal}"/>
+            <g:paginate total="${imageTotal}"/>
         </div>
     </div>
 </g:else>

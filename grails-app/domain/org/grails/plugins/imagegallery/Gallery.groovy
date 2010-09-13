@@ -2,8 +2,8 @@ package org.grails.plugins.imagegallery
 
 class Gallery {
     String name
-    Set<Image> photos
-    static hasMany=[photos:Image]
+    Set<Image> images
+    static hasMany=[images:Image]
     static constraints = {
         name(nullable: true)
     }

@@ -1,17 +1,16 @@
-<%@ page import="photogallery.Gallery" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <title>List Photo Galleries</title>
+        <title>List image Galleries</title>
     </head>
     <body>
         <div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Home</a></span>
-            <span class="menuButton"><g:link class="create" action="create">Create Photo Gallery</g:link></span>
+            <span class="menuButton"><g:link class="create" action="create">Create image Gallery</g:link></span>
         </div>
         <div class="body">
-            <h1>List Photo Galleries</h1>
+            <h1>List image Galleries</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>

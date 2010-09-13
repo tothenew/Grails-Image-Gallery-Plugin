@@ -1,8 +1,8 @@
 <div id="gallery_${gallery.id}">
-    <g:each in="${gallery.photos}" var="photo">
+    <g:each in="${gallery.images}" var="image">
         <div>
-        <g:link controller="photo" action="showPhoto" id="${photo.id}" params="[mimeType:'.jpeg']">
-            <img src="${createLink(controller: 'photo', action: 'showPhoto', id: photo.id, params: [thumbnail: true,mimeType:'.jpeg'])}" title="${photo.caption}" alt="${photo.description}">
+        <g:link controller="image" action="showImage" id="${image.id}" params="[mimeType:'.jpeg']">
+            <img src="${createLink(controller: 'image', action: 'showImage', id: image.id, params: [thumbnail: true,mimeType:'.jpeg'])}" title="${image.caption}" alt="${image.description}">
         </g:link>
         </div>
     </g:each>

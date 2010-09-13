@@ -1,9 +1,8 @@
-<%@ page import="photogallery.Gallery" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="layout" content="main" />
-        <title>Create Photo Gallery</title>
+        <title>Create image Gallery</title>
     </head>
     <body>
         <div class="nav">
@@ -11,7 +10,7 @@
             <span class="menuButton"><g:link class="list" action="list">List</g:link></span>
         </div>
         <div class="body">
-            <h1>Create Photo Gallery</h1>
+            <h1>Create image Gallery</h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>

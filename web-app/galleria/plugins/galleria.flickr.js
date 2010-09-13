@@ -44,7 +44,7 @@ F.prototype = {
 		var args = arguments;
 		return this._call({
 			method: 'flickr.urls.lookupUser',
-			url: 'flickr.com/photos/'+username
+			url: 'flickr.com/images/'+username
 		}, function(data) {
 			this._set(args);
 			this._find({
@@ -101,7 +101,7 @@ F.prototype = {
 	},
 	_find: function(params) {
 		params = jQuery.extend({
-			method: 'flickr.photos.search',
+			method: 'flickr.images.search',
 		    extras: 'url_t, url_m, url_o, url_s, url_l, description',
 		    sort: this.options.sort
 		}, params);

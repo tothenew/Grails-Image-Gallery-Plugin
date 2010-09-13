@@ -1,13 +1,14 @@
 package org.grails.plugins.imagegallery
 
+import javax.swing.ImageIcon
+
 class Image {
     byte[] thumbnail
     String caption
     String description
-    byte[] image
+    byte[] data
     Integer width
     Integer height
-    static belongsTo = Gallery
 
     static mapping = {
     }
@@ -15,14 +16,17 @@ class Image {
         description(nullable: true)
         thumbnail(nullable: true)
         caption(nullable: true)
-        image(validator: {
+        data(validator: {
             return it?.size() > 0
         })
-        width(nullable: false)
-        height(nullable: false)
+        width(nullable: true)
+        height(nullable: true)
     }
 
     def beforeInsert = {
+        java.awt.Image img = new ImageIcon(this?.data).getImage();
+        this?.height = img.getHeight(null);
+        this?.width = img.getWidth(null);
         loadThumbnail()
     }
     def beforeUpdate = {
@@ -30,11 +34,11 @@ class Image {
     }
 
     public void loadThumbnail() {
-        if (this.image) {
-            def photoTool = new ImageUtil()
-            photoTool.load(image)
-            photoTool.thumbnail(100)
-            this.thumbnail = photoTool.getBytes("JPEG")
+        if (this.data) {
+            def imageUtil = new ImageUtil()
+            imageUtil.load(data)
+            imageUtil.thumbnail(100)
+            this.thumbnail = imageUtil.getBytes("JPEG")
         }
     }
 }

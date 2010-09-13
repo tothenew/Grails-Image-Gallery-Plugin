@@ -1,8 +1,8 @@
 package org.grails.plugins.imagegallery
 
-class GalleryTagLib {
+class ImageGalleryTagLib {
 
-    static namespace = "imageGallery"
+    static namespace = "ig"
 
     def show = {attrs ->
         Gallery gallery = (attrs['galleryInstance'])
