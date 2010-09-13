@@ -65,15 +65,6 @@ class ImageController {
     def update = {
         def image = Image.get(params.id)
         if (image) {
-            if (params.version) {
-                def version = params.version.toLong()
-                if (image.version > version) {
-
-                    image.errors.rejectValue("version", "Another user has updated this Image while you were editing", "")
-                    render(view: "edit", model: [image: image])
-                    return
-                }
-            }
             image.properties = params
             if (!image.hasErrors() && image.save(flush: true)) {
                 flash.message = "Image has been updated"

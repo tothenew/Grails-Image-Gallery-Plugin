@@ -1,7 +1,7 @@
 package org.grails.plugins.imagegallery
 
 class GalleryController {
-
+    def imageGalleryService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
@@ -55,15 +55,6 @@ class GalleryController {
     def update = {
         def gallery = Gallery.get(params.id)
         if (gallery) {
-            if (params.version) {
-                def version = params.version.toLong()
-                if (gallery.version > version) {
-
-                    gallery.errors.rejectValue("version", "Another user has updated this Gallery while you were editing", "")
-                    render(view: "edit", model: [gallery: gallery])
-                    return
-                }
-            }
             gallery.properties = params
             if (!gallery.hasErrors() && gallery.save(flush: true)) {
                 flash.message = "Gallery has been updated"
@@ -111,8 +102,7 @@ class GalleryController {
         gallery.images = []
         if (params.image) {
             [params.image].flatten().each {
-                image = Image.get(it)
-                gallery.addToImages(image)
+                imageGalleryService.addImageToGallery(Image.get(it), gallery)
             }
         }
         redirect(action: 'list')

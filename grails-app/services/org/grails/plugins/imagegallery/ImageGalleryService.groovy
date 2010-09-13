@@ -16,9 +16,24 @@ class ImageGalleryService {
         return image
     }
 
-    Image saveImage(byte[] data, String caption, String description) {
+    Image saveImage(byte[] data, String description, String caption) {
         Image image = new Image(data: data, caption: caption, description: description)
         image.save()
+        return image
+    }
+
+    Image updateImage(Long id, byte[] data, String caption = "", String description = "") {
+        Image image = Image.get(id)
+        description = description ?: image?.description
+        caption = caption ?: image?.caption
+        updateImage(image, data, description, caption)
+        return image
+    }
+
+    Image updateImage(Image image, byte[] data, String description = "", String caption = "") {
+        image.data = data
+        image.caption = caption ?: image?.caption
+        image.description = description ?: image?.description
         return image
     }
 
@@ -28,7 +43,14 @@ class ImageGalleryService {
         return gallery
     }
 
-    void addImagesToGallery() {
-
+    void addImagesToGallery(List<Image> images, Gallery gallery) {
+        images.each {Image image ->
+            addImageToGallery(image, gallery)
+        }
     }
+
+    void addImageToGallery(Image image, Gallery gallery) {
+        gallery.addToImages(image)
+    }
+
 }
