@@ -7,10 +7,10 @@ class BootStrap {
 
     def init = { servletContext ->
         ConfigurationHolder.config.rover.filePaths.restaurantImages
-        String path = SCH.servletContext.getRealPath("/bootstrapData/sample-photo.jpg")
-
+        String path = SCH.servletContext.getRealPath("/bootstrapData/")
+        List<String> imagePaths = ["04092010345.jpg", "04092010346.jpg", "04092010347.jpg", "04092010348.jpg", "04092010362.jpg"]
         (1..20).each {
-            File file = new File(path)
+            File file = new File(path + "/${imagePaths[it % 4]}")
             imageGalleryService.saveImage(file?.bytes, "caption$it", "description$it")
         }
         (1..5).each {

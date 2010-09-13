@@ -11,6 +11,17 @@ class ImageGalleryTagLib {
         out << g.render(template: "${pluginContextPath}/grails-app/views/showGalleria", model: [theme: attrs['theme'] ?: 'classic', gallery: gallery, pluginContextPath: pluginContextPath, options: options ?: '', showInLightBox: showInLightBox])
     }
 
+    def img = {attrs ->
+        String thumbnailSrc = "${attrs['thumbnailSrc']}" ? "${attrs['thumbnailSrc']}" : ""
+        attrs.remove('thumbnailSrc')
+        String attributes = "${attrs.collect {k, v -> " $k=\"$v\"" }.join('')}"
+        String image = "<img ${attributes} />"
+        if (thumbnailSrc) {
+            out << "<a href='${thumbnailSrc}'>${image}</a>"
+        } else {
+            out << image
+        }
+    }
 
     def resources = {
         out << "<script type='text/javascript' src='${g.resource(dir: pluginContextPath + '/galleria', file: 'galleria.js')}' ></script>"
