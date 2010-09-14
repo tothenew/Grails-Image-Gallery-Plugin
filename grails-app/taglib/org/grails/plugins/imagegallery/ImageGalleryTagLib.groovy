@@ -12,8 +12,10 @@ class ImageGalleryTagLib {
     }
 
     def img = {attrs ->
-        String thumbnailSrc = "${attrs['thumbnailSrc']}" ? "${attrs['thumbnailSrc']}" : ""
+        String thumbnailSrc = "${attrs['thumbnailSrc']}" ?: ""
         attrs.remove('thumbnailSrc')
+        attrs['src'] = addParameter(attrs['src']?.toString())
+        thumbnailSrc = addParameter(thumbnailSrc)
         String attributes = "${attrs.collect {k, v -> " $k=\"$v\"" }.join('')}"
         String image = "<img ${attributes} />"
         if (thumbnailSrc) {
@@ -21,6 +23,12 @@ class ImageGalleryTagLib {
         } else {
             out << image
         }
+    }
+
+    String addParameter(String url) {
+        String appender = (url.indexOf("?") == -1) ? "?" : "&"
+        url = "${url}${appender}imageGallery=.jpeg"
+        return url
     }
 
     def resources = {
