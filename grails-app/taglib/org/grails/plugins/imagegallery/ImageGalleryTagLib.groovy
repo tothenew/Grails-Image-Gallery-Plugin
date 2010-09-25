@@ -5,6 +5,9 @@ class ImageGalleryTagLib {
     static namespace = "ig"
 
     def show = {attrs, body ->
+        if (attrs.galleryInstance == null) {
+            throwTagError("Tag  [show] is missing required attribute [galleryInstance]")
+        }
         Boolean showInLightBox = attrs['showInLightBox'] ? true : false
         def options = attrs['options'] ?: 'autoplay: true'
         Gallery gallery = (attrs['galleryInstance'])

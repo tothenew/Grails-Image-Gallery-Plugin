@@ -3,6 +3,10 @@ package org.grails.plugins.imagegallery
 import javax.swing.ImageIcon
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
+/**
+ * Image holds the image bytes, its thumbnail and other properties related to an Image.
+ * Image data field is required. Height, Width and thumbnail are created updating or creating an image.    
+ */
 class Image {
     byte[] thumbnail
     String caption

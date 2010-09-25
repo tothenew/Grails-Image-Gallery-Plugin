@@ -4,11 +4,7 @@ import java.awt.Image
 import javax.swing.ImageIcon
 
 /**
- * Created by IntelliJ IDEA.
- * User: uday
- * Date: 9 Sep, 2010
- * Time: 3:09:44 PM
- * To change this template use File | Settings | File Templates.
+ * ImageCO is a command object. 
  */
 class ImageCO {
     org.springframework.web.multipart.commons.CommonsMultipartFile data
