@@ -15,12 +15,11 @@ class ImageGalleryGrailsPlugin {
             "UrlMappings.groovy"
     ]
 
-    // TODO Fill in these fields
-    def author = "Your name"
-    def authorEmail = ""
-    def title = "Plugin summary/headline"
+    def author = "Chandan Luthra"
+    def authorEmail = "chandan.luthra@gmail.com"
+    def title = "Image Gallery Plugin"
     def description = '''\\
-Brief description of the plugin.
+Image-Gallery plugin creates an Image gallery and also provides the UI to dynamically add/update Images
 '''
 
     // URL to the plugin's documentation
