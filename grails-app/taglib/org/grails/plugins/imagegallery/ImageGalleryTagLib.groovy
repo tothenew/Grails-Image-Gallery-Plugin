@@ -4,6 +4,14 @@ class ImageGalleryTagLib {
 
     static namespace = "ig"
 
+/**
+ * Renders HTML for displaying the Image Gallery
+ * The galleryInstance is a mandatory parameter to render gallery
+ @param grailsInstance accepts an instance of org.grails.plugins.imagegallery.Gallery
+ @param options(optional) comma separated list of different arguments which are passed directly to Galleria to configure it
+ @param showInLightBox(optional) set to true if you want to enable lightBox on the gallery image
+ @param theme(optional), accepts theme name to apply on the gallery (default value is 'classic') other values clould be 'dots', 'fullscreen'
+ */
     def show = {attrs, body ->
         Boolean showInLightBox = attrs['showInLightBox'] ? true : false
         def options = attrs['options'] ?: 'autoplay: true'
