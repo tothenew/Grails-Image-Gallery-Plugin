@@ -1,6 +1,7 @@
 package org.grails.plugins.imagegallery
 
 import javax.swing.ImageIcon
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 class Image {
     byte[] thumbnail
@@ -33,11 +34,19 @@ class Image {
         loadThumbnail()
     }
 
+
+
+  /**
+    * Creates the thumbnail. Takes maxWidth and maxHeight from config.groovy if provided
+    *  otherwise cosiders the default max width & height as 170 & 120 respectively.
+    */
     public void loadThumbnail() {
         if (this.data) {
             def imageUtil = new ImageUtil()
             imageUtil.load(data)
-            imageUtil.thumbnail(100)
+            float maxWidth = CH?.config?.grails?.imageGallery?.thumbnail?.maxWidth?:170
+            float maxHeight = CH?.config?.grails?.imageGallery?.thumbnail?.maxWidth?:120
+            imageUtil.thumbnailSpecial(maxWidth, maxHeight, 1,1)
             this.thumbnail = imageUtil.getBytes("JPEG")
         }
     }
