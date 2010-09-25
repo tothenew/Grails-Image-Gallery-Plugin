@@ -3,6 +3,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="layout" content="main"/>
     <title>Show image Gallery</title>
+    <g:javascript library="jquery" plugin="jquery"/>
+    <ig:resources/>
 </head>
 <body>
 <div class="nav">
@@ -45,6 +47,9 @@
             <span class="button"><g:actionSubmit class="edit" action="edit" value="Edit"/></span>
             <span class="button"><g:actionSubmit class="delete" action="delete" value="Delete" onclick="return confirm('Are you sure?');"/></span>
         </g:form>
+    </div>
+    <div style="width:300px;height:200px;float:right">
+        <ig:show galleryInstance="${gallery}" options="height:500,preload:2,carousel:true,transition:'pulse',image_pan_smoothness:5" showInLightBox="true"/>
     </div>
 </div>
 </body>
